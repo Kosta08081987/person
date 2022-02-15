@@ -1,5 +1,7 @@
 package telran.java40;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +27,7 @@ public class ForumServiceSecurityApplication implements CommandLineRunner {
 		if(!repository.existsById("admin")) {
 			String password =passwordEncoder.encode("admin");
 			UserAccount userAccount = new UserAccount("admin",password,"","");
+			userAccount.setExperationDate(LocalDate.now().plusYears(100));
 			userAccount.addRole("USER");
 			userAccount.addRole("MODERATOR");
 			userAccount.addRole("ADMINISTRATOR");
